@@ -61,4 +61,13 @@ class AdministradorController extends Controller
 
         return view('ventas', compact('usuarios'), compact('ventas'));
     }
+
+    public function nuevoDepartamento(){
+        $departamento = new Departamento();
+        $departamento->nombre = $request->get('nombre');
+        $departamento->save();
+
+        $departamentos = Departamento::withCount('user')->get();
+        return view('departamentos', compact('departamentos'));
+    }
 }

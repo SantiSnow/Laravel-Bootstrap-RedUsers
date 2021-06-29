@@ -22,6 +22,10 @@ Route::group(['middleware'=> 'auth'], function (){
     Route::get('/', function () {
         return view('welcome');
     });
+
+    Route::get('/dashboard', function () {
+        return view('welcome');
+    });
     
     Route::get('/ventas', function () {
         return view('ventas');
@@ -35,6 +39,9 @@ Route::group(['middleware'=> 'auth'], function (){
     
     Route::get('/departamentos', [AdministradorController::class, 'getDepartamentos']);
     
+    Route::post('/nueva-departamento', [AdministradorController::class, 'getDepartamentos']);
+    
+
     Route::get('/exportes', function () {
         return view('exportes');
     });
@@ -61,6 +68,7 @@ Route::group(['middleware'=> 'auth'], function (){
     Route::get('/exportar-departamentos', function () {
         return view('exportes.departamentos');
     });
+    
 });
 
 require __DIR__.'/auth.php';

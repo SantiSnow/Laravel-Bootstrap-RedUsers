@@ -50,28 +50,22 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>Crear nuevo usuario</h3>
-                <form>
-                    <label for="" class="form-label">Email </label>
-                    <input type="email" class="form-control" name="" placeholder="Ingrese el email">
+                <form method="POST" action="{{ url('/register') }}" class="form-group">
+                @csrf
+                    <label for="name">Nombre</label>
+                    <input type="text" name="name" id="name" class="form-control" required />
 
-                    <label for="" class="form-label">Nombre </label>
-                    <input type="email" class="form-control" name="" placeholder="Nombre">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="" class="form-control" required />
 
-                    <label for="" class="form-label">Apellido </label>
-                    <input type="email" class="form-control" name="" placeholder="Apellido">
+                    <label for="departamento_id">Departamento</label>
+                    <input type="number" name="departamento_id" class="form-control" id="" required />
 
-                    <label for="" class="form-label">Departamento </label>
-                    <select name="departamento" class="form-control">
-                        <option value="Textil">Textil</option>
-                        <option value="Deportes">Deportes</option>
-                        <option value="Informática">Informática</option>
-                    </select>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="" class="form-control" required />
 
-                    <label for="" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="" placeholder="Ingrese la contraseña">
-
-                    <br />
-                    <button type="submit" class="btn btn-primary">Crear Usuario</button>
+                    <button type="submit" class="btn btn-primary">Registro</button>
+                    <button type="reset" class="btn btn-danger">Limpiar campos</button>
                 </form>
             </div>
         </div>

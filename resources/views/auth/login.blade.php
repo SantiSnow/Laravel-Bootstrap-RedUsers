@@ -36,8 +36,8 @@
                     <label for="password">Contraseña</label>
                     <input type="password" class="form-control" name="password" id="password" required />
 
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
-                    <button type="reset" class="btn btn-danger">Limpiar campos</button>
+                    <button type="submit" class="btn btn-primary m-3">Ingresar</button>
+                    <button type="reset" class="btn btn-danger m-3">Limpiar campos</button>
                 </form>
 
             </div>
