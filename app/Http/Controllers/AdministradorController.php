@@ -7,12 +7,12 @@ use App\Models\Compra;
 use App\Models\Venta;
 use App\Models\User;
 use App\Models\Departamento;
+use App\Models\Proveedor;
 
 class AdministradorController extends Controller
 {
     public function getUsuarios(){
-        $usuarios = User::all();
-
+        $usuarios = User::withCount('compras')->withCount('ventas')->get();
         return view('usuarios', compact('usuarios'));
     }
 
@@ -21,12 +21,22 @@ class AdministradorController extends Controller
         return view('departamentos', compact('departamentos'));
     }
 
-    public function getCompras(){
+    public function getProveedores()
+    {
+        $proveedores = Proveedor::all();
+        return view('proveedores', compact('proveedores'));
+    }
 
+    public function getCompras(){
         $usuarios = User::all();
         $compras = Compra::all();
+        $proveedores = Proveedor::all();
 
-        return view('compras', compact('usuarios'), compact('compras'));
+        return view('compras',[
+            'compras' => $compras,
+            'usuarios' => $usuarios,
+            'proveedores' => $proveedores
+        ]);
     }
 
     public function nuevaCompra(Request $request){
@@ -34,12 +44,28 @@ class AdministradorController extends Controller
         $compra->cantidad = $request->get('cantidad');
         $compra->precio = $request->get('precio');
         $compra->user_id = $request->get('user_id');
+        $compra->proveedor_id = $request->get('proveedor');
+        $compra->fecha_compra = $request->get('fecha');
         $compra->save();
 
         $usuarios = User::all();
         $compras = Compra::all();
+        $proveedores = Proveedor::all();
 
-        return view('compras', compact('usuarios'), compact('compras'));
+        return view('compras',[
+            'compras' => $compras,
+            'usuarios' => $usuarios,
+            'proveedores' => $proveedores
+        ]);
+    }
+
+    public function nuevoProveedor(Request $request){
+        $proveedor = new Proveedor();
+        $proveedor->nombre = $request->get('nombre');
+        $proveedor->save();
+
+        $proveedores = Proveedor::all();
+        return view('proveedores', compact('proveedores'));
     }
 
     public function getVentas(){
@@ -62,7 +88,7 @@ class AdministradorController extends Controller
         return view('ventas', compact('usuarios'), compact('ventas'));
     }
 
-    public function nuevoDepartamento(){
+    public function nuevoDepartamento(Request $request){
         $departamento = new Departamento();
         $departamento->nombre = $request->get('nombre');
         $departamento->save();

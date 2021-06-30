@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdministradorController;
 use App\Models\Compra;
+use App\Models\Venta;
 use App\Models\User;
 use App\Models\Departamento;
 
@@ -28,8 +29,12 @@ Route::group(['middleware'=> 'auth'], function (){
     });
     
     Route::get('/ventas', function () {
-        return view('ventas');
+        $ventas = Venta::all();
+        $usuarios = User::all();
+        return view('ventas', compact('ventas'), compact('usuarios'));
     });
+
+    Route::post('/nueva-venta', [AdministradorController::class, 'nuevaVenta']);
     
     Route::get('/compras', [AdministradorController::class, 'getCompras']);
 
@@ -39,7 +44,11 @@ Route::group(['middleware'=> 'auth'], function (){
     
     Route::get('/departamentos', [AdministradorController::class, 'getDepartamentos']);
     
-    Route::post('/nueva-departamento', [AdministradorController::class, 'getDepartamentos']);
+    Route::get('/proveedores', [AdministradorController::class, 'getProveedores']);
+
+    Route::post('/nuevo-departamento', [AdministradorController::class, 'nuevoDepartamento']);
+
+    Route::post('/nuevo-proveedor', [AdministradorController::class, 'nuevoProveedor']);
     
 
     Route::get('/exportes', function () {

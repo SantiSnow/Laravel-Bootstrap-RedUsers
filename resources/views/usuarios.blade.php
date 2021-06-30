@@ -8,41 +8,23 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
             <th scope="col">Email</th>
             <th scope="col">Departamento</th>
-            <th scope="col">Ventas</th>
             <th scope="col">Compras</th>
+            <th scope="col">Ventas</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($usuarios as $usuario)
         <tr>
-            <th scope="row">1</th>
-            <td>Santiago</td>
-            <td>Aguirre</td>
-            <td>santiago@gmail.com</td>
-            <td>Deportes</td>
-            <td>4</td>
-            <td>4</td>
+            <th scope="row">{{ $usuario->id }}</th>
+            <td>{{ $usuario->name }}</td>
+            <td>{{ $usuario->email }}</td>
+            <td>{{ $usuario->departamento->nombre }}</td>
+            <td>{{ $usuario->compras_count }}</td>
+            <td>{{ $usuario->ventas_count }}</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Micaela</td>
-            <td>Aguirre</td>
-            <td>micaela@gmail.com</td>
-            <td>Textil</td>
-            <td>1</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Pablo</td>
-            <td>Lopéz</td>
-            <td>pablo@gmail.com</td>
-            <td>Informática</td>
-            <td>5</td>
-            <td>9</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
 

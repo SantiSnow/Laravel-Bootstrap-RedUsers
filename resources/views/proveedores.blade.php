@@ -12,15 +12,13 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Cant. de Usuarios</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($departamentos as $departamento)
+                @foreach($proveedores as $proveedor)
                     <tr>
-                        <th scope="row">{{ $departamento->id }}</th>
-                        <td>{{ $departamento->nombre }}</td>
-                        <td>{{ $departamento->user_count }}</td>
+                        <th scope="row">{{ $proveedor->id }}</th>
+                        <td>{{ $proveedor->nombre }}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -34,11 +32,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h3>Nuevo departamento</h3>
-            <form action="{{ url('/nuevo-departamento') }}" method="post">
+            <h3>Nuevo proveedor</h3>
+            <form action="{{ url('/nuevo-proveedor') }}" method="post">
                 @csrf
                 <label for="nombre" class="form-label">Nombre </label>
-                <input type="text" class="form-control" name="nombre" placeholder="Ingrese del departamento">
+                <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre">
                 <br />
                 <button type="submit" class="btn btn-primary">Registrar compra</button>
             </form>

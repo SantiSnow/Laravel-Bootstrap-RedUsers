@@ -15,6 +15,8 @@
                     <th scope="col">Precio</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Departamento</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Proveedor</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,6 +27,8 @@
                         <td>{{ $compra->precio }}</td>
                         <td>{{ $compra->user->name }}</td>
                         <td>{{ $compra->user->departamento->nombre }}</td>
+                        <td>{{ $compra->proveedor->nombre }}</td>
+                        <td>{{ $compra->fecha_compra }}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -52,6 +56,16 @@
                 <select name="user_id" class="form-control">
                     @foreach($usuarios as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endforeach
+                </select>
+                
+                <label for="fecha" class="">Fecha de la compra</label>
+                <input type="date" name="fecha" class="form-control" />
+
+                <label for="proveedor" class="form-label">Proveedor</label>
+                <select name="proveedor" class="form-control">
+                    @foreach($proveedores as $proveedor)
+                        <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
                     @endforeach
                 </select>
 
